@@ -7,9 +7,9 @@
  * @constructor
  * @api public
  */
- 
+
 function Paginate (data, perPage) {
-	
+
 	if (!data) throw new Error('Required Argument Missing')
 	if (!(data instanceof Array)) throw new Error('Invalid Argument Type')
 
@@ -25,9 +25,9 @@ function Paginate (data, perPage) {
  * @return {Number}
  * @api private
  */
- 
+
 Paginate.prototype.offset = function () {
-	
+
 	return ((this.currentPage - 1) * this.perPage);
 }
 
@@ -38,18 +38,22 @@ Paginate.prototype.offset = function () {
  * @return {Array}
  * @api public
  */
- 
+
 Paginate.prototype.page = function (pageNum) {
-	
+
 	if (pageNum < 1) pageNum = 1
 	if (pageNum > this.totalPages) pageNum = this.totalPages
-	
+
 	this.currentPage = pageNum
-	
+
 	var start = this.offset()
 	  , end = start + this.perPage
 
 	return this.data.slice(start, end);
+}
+
+Paginate.prototype.totalPage = function () {
+	return this.totalPages;
 }
 
 /**
@@ -58,7 +62,7 @@ Paginate.prototype.page = function (pageNum) {
  * @return {Array}
  * @api public
  */
- 
+
 Paginate.prototype.next = function () {
 
 	return this.page(this.currentPage + 1);
@@ -70,9 +74,9 @@ Paginate.prototype.next = function () {
  * @return {Array}
  * @api public
  */
- 
+
 Paginate.prototype.prev = function () {
-	
+
 	return this.page(this.currentPage - 1);
 }
 
@@ -82,14 +86,14 @@ Paginate.prototype.prev = function () {
  * @return {Boolean}
  * @api public
  */
- 
+
 Paginate.prototype.hasNext = function () {
-	
+
 	return (this.currentPage < this.totalPages)
 }
 
 /**
  * Expose `Paginate`
  */
- 
+
 if (typeof module !== 'undefined') module.exports = Paginate
