@@ -87,9 +87,8 @@ Paginate.prototype.prev = function () {
  * @api public
  */
 
-Paginate.prototype.hasNext = function () {
-
-	return (this.currentPage < this.totalPages)
+Paginate.prototype.hasNext = function (page) {
+	return (page-1 < this.totalPages)
 }
 
 /**
