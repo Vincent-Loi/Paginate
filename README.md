@@ -23,13 +23,13 @@ var fakeData = new Array(32)
 // create a Paginate object
 var pager = new Paginate(fakeData)
 	
-// print all the pages
-while(pager.hasNext())
-	console.log(pager.next())
-		
 // get page 1
 console.log(pager.page(1))
 	
+// print all the pages
+while(pager.hasNext(page++))
+	console.log(pager.next())
+		
 //then
 console.log(pager.next()) // this will print page 2
 ```
