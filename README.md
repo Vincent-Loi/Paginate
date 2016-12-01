@@ -11,7 +11,7 @@ optionally with a specific `Number` of items per page.
 
     * `prev()` - Returns the previous page as Array.
 
-    * `hasNext()` - Checks if there is a next page.
+    * `hasNext(nextPage)` - Checks if there is a next page.
 
 
 ##Example:
@@ -23,13 +23,13 @@ var fakeData = new Array(32)
 // create a Paginate object
 var pager = new Paginate(fakeData)
 	
-// print all the pages
-while(pager.hasNext())
-	console.log(pager.next())
-		
 // get page 1
 console.log(pager.page(1))
 	
+// print all the pages
+while(pager.hasNext(page++))
+	console.log(pager.next())
+		
 //then
 console.log(pager.next()) // this will print page 2
 ```
